@@ -1,7 +1,10 @@
 import { Link, router } from '@inertiajs/react'
 import { useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/components/ui/label'
 import type { PageProps } from '../../pages.gen'
-import styles from './New.module.css'
 
 const Edit = ({ post, errors }: PageProps<'Posts/Edit'>) => {
   const [form, setForm] = useState({ title: post.title, body: post.body })
@@ -12,33 +15,36 @@ const Edit = ({ post, errors }: PageProps<'Posts/Edit'>) => {
   }
 
   return (
-    <main className={styles.container}>
-      <Link href={`/posts/${post.id}`} className={styles.back}>← 記事へ</Link>
-      <h1>編集</h1>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.field}>
-          <label htmlFor='title'>タイトル</label>
-          <input
+    <main className='max-w-2xl mx-auto px-4 py-8'>
+      <Link href={`/posts/${post.id}`} className='text-sm text-muted-foreground hover:text-foreground mb-6 inline-block'>
+        ← 記事へ
+      </Link>
+      <h1 className='text-3xl font-bold mb-8'>編集</h1>
+      <form onSubmit={handleSubmit} className='flex flex-col gap-6'>
+        <div className='flex flex-col gap-2'>
+          <Label htmlFor='title'>タイトル</Label>
+          <Input
             id='title'
-            type='text'
             value={form.title}
             onChange={(e) => setForm({ ...form, title: e.target.value })}
           />
-          {errors.title && <span className={styles.error}>{errors.title}</span>}
+          {errors.title && <p className='text-sm text-destructive'>{errors.title}</p>}
         </div>
-        <div className={styles.field}>
-          <label htmlFor='body'>本文</label>
-          <textarea
+        <div className='flex flex-col gap-2'>
+          <Label htmlFor='body'>本文</Label>
+          <Textarea
             id='body'
             value={form.body}
             rows={10}
             onChange={(e) => setForm({ ...form, body: e.target.value })}
           />
-          {errors.body && <span className={styles.error}>{errors.body}</span>}
+          {errors.body && <p className='text-sm text-destructive'>{errors.body}</p>}
         </div>
-        <div className={styles.actions}>
-          <button type='submit' className={styles.submitButton}>更新</button>
-          <Link href={`/posts/${post.id}`} className={styles.cancelLink}>キャンセル</Link>
+        <div className='flex items-center gap-4'>
+          <Button type='submit'>更新</Button>
+          <Link href={`/posts/${post.id}`} className='text-sm text-muted-foreground hover:text-foreground'>
+            キャンセル
+          </Link>
         </div>
       </form>
     </main>

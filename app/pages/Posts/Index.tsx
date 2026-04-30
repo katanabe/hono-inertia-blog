@@ -1,28 +1,37 @@
 import { Link } from '@inertiajs/react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import type { PageProps } from '../../pages.gen'
-import styles from './Index.module.css'
 
 const Index = ({ posts }: PageProps<'Posts/Index'>) => (
-  <main className={styles.container}>
-    <div className={styles.header}>
-      <h1>記事一覧</h1>
-      <Link href='/posts/new' className={styles.button}>新規作成</Link>
+  <main className='max-w-2xl mx-auto px-4 py-8'>
+    <div className='flex items-center justify-between mb-8'>
+      <h1 className='text-3xl font-bold'>記事一覧</h1>
+      <Button asChild>
+        <Link href='/posts/new'>新規作成</Link>
+      </Button>
     </div>
     {posts.length === 0 ? (
-      <p className={styles.empty}>記事がありません</p>
+      <p className='text-muted-foreground'>記事がありません</p>
     ) : (
-      <ul className={styles.list}>
+      <div className='flex flex-col gap-4'>
         {posts.map((post) => (
-          <li key={post.id} className={styles.item}>
-            <Link href={`/posts/${post.id}`} className={styles.title}>
-              {post.title}
-            </Link>
-            <time className={styles.date}>
-              {new Date(post.createdAt).toLocaleDateString('ja-JP')}
-            </time>
-          </li>
+          <Card key={post.id} className='hover:shadow-md transition-shadow'>
+            <CardHeader className='pb-2'>
+              <CardTitle className='text-lg'>
+                <Link href={`/posts/${post.id}`} className='hover:underline'>
+                  {post.title}
+                </Link>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <time className='text-sm text-muted-foreground'>
+                {new Date(post.createdAt).toLocaleDateString('ja-JP')}
+              </time>
+            </CardContent>
+          </Card>
         ))}
-      </ul>
+      </div>
     )}
   </main>
 )
