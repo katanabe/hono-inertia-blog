@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "hono-inertia-blog",
+  "compatibility_date": "2026-04-28",
+  "main": "./src/server.tsx",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "hono-inertia-blog",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ]
+}
