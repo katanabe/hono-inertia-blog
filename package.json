@@ -30,6 +30,7 @@
     "@hono/zod-validator": "^0.7.6",
     "@inertiajs/react": "^3.0.3",
     "@tailwindcss/vite": "^4.2.4",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.44.0",
     "hono": "^4.12.15",
