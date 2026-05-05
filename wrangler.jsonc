@@ -3,11 +3,12 @@
   "name": "hono-inertia-blog",
   "compatibility_date": "2026-04-28",
   "main": "./src/server.tsx",
+  "workers_dev": true,
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "hono-inertia-blog",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "0deb8a64-3945-4fa5-9aa5-8cda784afe22",
       "migrations_dir": "migrations"
     }
   ]
